@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,6 +8,8 @@ import java.awt.event.ActionListener;
 public class TextEditor extends JFrame implements ActionListener {
 
     JTextArea textArea;
+    JScrollPane scrollPane;
+    JSpinner fontSizeSpinner;
 
     TextEditor() {
 
@@ -16,12 +20,25 @@ public class TextEditor extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
 
         textArea = new JTextArea();
-        textArea.setPreferredSize(new Dimension(450, 450));
+        //textArea.setPreferredSize(new Dimension(450, 450));
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setFont(new Font("Arial", Font.PLAIN, 20));
 
-        this.add(textArea);
+        scrollPane = new JScrollPane(textArea);
+        scrollPane.setPreferredSize(new Dimension(450, 450));
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        fontSizeSpinner = new JSpinner();
+        fontSizeSpinner.setPreferredSize(new Dimension(50, 25));
+        fontSizeSpinner.setValue(20);
+        fontSizeSpinner.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+
+            }
+        });
+        this.add(scrollPane);
         this.setVisible(true);
 
     }
