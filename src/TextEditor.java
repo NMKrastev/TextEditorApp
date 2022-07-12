@@ -75,6 +75,10 @@ public class TextEditor extends JFrame implements ActionListener {
         saveItem = new JMenuItem("Save");
         exitItem = new JMenuItem("Exit");
 
+        openItem.addActionListener(this);
+        saveItem.addActionListener(this);
+        exitItem.addActionListener(this);
+
         fileMenu.add(openItem);
         fileMenu.add(saveItem);
         fileMenu.add(exitItem);
@@ -105,6 +109,18 @@ public class TextEditor extends JFrame implements ActionListener {
         if (e.getSource() == fontBox) {
             textArea.setFont(new Font((String) fontBox.getSelectedItem(),
                     Font.PLAIN, textArea.getFont().getSize()));
+        }
+
+        if (e.getSource() == openItem) {
+
+        }
+
+        if (e.getSource() == saveItem) {
+
+        }
+
+        if (e.getSource() == exitItem) {
+            System.exit(0);
         }
     }
 }
