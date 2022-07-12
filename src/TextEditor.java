@@ -27,18 +27,21 @@ public class TextEditor extends JFrame implements ActionListener {
         this.setLayout(new FlowLayout());
         this.setLocationRelativeTo(null);
 
+        // ********** Text Area **********
         textArea = new JTextArea();
         //textArea.setPreferredSize(new Dimension(450, 450));
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setFont(new Font("Arial", Font.PLAIN, 20));
-
+        // ********** /Text Area **********
+        // ********** Scroll Pane **********
         scrollPane = new JScrollPane(textArea);
         scrollPane.setPreferredSize(new Dimension(450, 450));
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        // ********** /Scroll Pane **********
 
         fontLabel =  new JLabel("Font Size");
-
+        // ********** Font Size Spinner **********
         fontSizeSpinner = new JSpinner();
         fontSizeSpinner.setPreferredSize(new Dimension(50, 25));
         fontSizeSpinner.setValue(20);
@@ -50,19 +53,36 @@ public class TextEditor extends JFrame implements ActionListener {
                         (int) fontSizeSpinner.getValue()));
             }
         });
+        // ********** /Font Size Spinner **********
 
+        // ********** Font Color Button **********
         fontColorButton = new JButton("Color");
         fontColorButton.addActionListener(this);
+        // ********** /Font Color Button **********
         //This will take all available font in Java
         String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 
+        // ********** Font Box **********
         fontBox = new JComboBox(fonts);
         fontBox.addActionListener(this);
         fontBox.setSelectedItem("Arial");
+        // ********** /Font Box **********
 
-        // ********** Menu Bar ***********
+        // ********** Menu Bar **********
         menuBar = new JMenuBar();
+        fileMenu = new JMenu("File");
+        openItem = new JMenuItem("Open");
+        saveItem = new JMenuItem("Save");
+        exitItem = new JMenuItem("Exit");
 
+        fileMenu.add(openItem);
+        fileMenu.add(saveItem);
+        fileMenu.add(exitItem);
+
+        menuBar.add(fileMenu);
+        // ********** /Menu Bar **********
+
+        this.setJMenuBar(menuBar);
         this.add(fontLabel);
         this.add(fontSizeSpinner);
         this.add(fontColorButton);
