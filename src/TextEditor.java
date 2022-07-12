@@ -4,6 +4,9 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 public class TextEditor extends JFrame implements ActionListener {
 
@@ -116,7 +119,26 @@ public class TextEditor extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == saveItem) {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setCurrentDirectory(new File("."));
 
+            int response = fileChooser.showSaveDialog(null);
+
+            if (response == JFileChooser.APPROVE_OPTION) {
+                File file;
+                PrintWriter fileOut = null;
+
+                file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                try {
+                    fileOut = new PrintWriter(file);
+                    fileOut.println(textArea.getText());
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+                } finally {
+                    fileOut.close();
+                }
+
+            }
         }
 
         if (e.getSource() == exitItem) {
