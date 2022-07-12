@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 public class TextEditor extends JFrame implements ActionListener {
 
+    JTextArea textArea;
+
     TextEditor() {
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -12,6 +14,14 @@ public class TextEditor extends JFrame implements ActionListener {
         this.setSize(500, 500);
         this.setLayout(new FlowLayout());
         this.setLocationRelativeTo(null);
+
+        textArea = new JTextArea();
+        textArea.setPreferredSize(new Dimension(450, 450));
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setFont(new Font("Arial", Font.PLAIN, 20));
+
+        this.add(textArea);
         this.setVisible(true);
 
     }
