@@ -9,6 +9,7 @@ public class TextEditor extends JFrame implements ActionListener {
 
     JTextArea textArea;
     JScrollPane scrollPane;
+    JLabel fontLabel;
     JSpinner fontSizeSpinner;
 
     TextEditor() {
@@ -29,6 +30,8 @@ public class TextEditor extends JFrame implements ActionListener {
         scrollPane.setPreferredSize(new Dimension(450, 450));
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
+        fontLabel =  new JLabel("Font Size");
+
         fontSizeSpinner = new JSpinner();
         fontSizeSpinner.setPreferredSize(new Dimension(50, 25));
         fontSizeSpinner.setValue(20);
@@ -36,8 +39,13 @@ public class TextEditor extends JFrame implements ActionListener {
             @Override
             public void stateChanged(ChangeEvent e) {
 
+                textArea.setFont(new Font(textArea.getFont().getFamily(), Font.PLAIN,
+                        (int) fontSizeSpinner.getValue()));
             }
         });
+
+        this.add(fontLabel);
+        this.add(fontSizeSpinner);
         this.add(scrollPane);
         this.setVisible(true);
 
